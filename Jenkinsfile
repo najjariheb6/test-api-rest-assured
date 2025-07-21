@@ -1,26 +1,28 @@
 pipeline {
-    agent {
-        docker {
-            image 'maven:3.9.6-eclipse-temurin-17'
-            args '-v $HOME/.m2:/root/.m2'
-        }
+    agent any
+
+    tools {
+        maven 'Maven 3.8.6'
+        jdk 'Java 17'
     }
+
     stages {
-        stage('checkout') {
+        stage('Checkout') {
             steps {
-                checkout scm
+                git 'https://github.com/najjariheb6/test-api-rest-assured.git'
             }
         }
-        stage('Install Dependencies and Run Tests') {
+
+        stage('Build and Test') {
             steps {
-                sh 'mvn clean install'
+                sh 'mvn clean test'
             }
         }
     }
+
     post {
         always {
-            archiveArtifacts artifacts: 'target/surefire-reports/*.xml', allowEmptyArchive: true
-            junit 'target/surefire-reports/*.xml'
+            junit '**/target/surefire-reports/*.xml'
         }
     }
 }
