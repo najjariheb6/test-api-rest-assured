@@ -15,8 +15,7 @@ pipeline {
 
         stage('Build and Test') {
             steps {
-                sh 'chmod +x ./mvnw'
-                sh './mvnw clean test'
+                sh 'mvn clean test'
             }
         }
     }

@@ -7,7 +7,6 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import tests.utils.ConfigLoader;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 

@@ -1,18 +1,19 @@
 package tests.users;
 
 import com.github.javafaker.Faker;
+import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-import io.restassured.RestAssured;
 import tests.utils.ConfigLoader;
 
 import java.util.HashMap;
 import java.util.Map;
 
-import static io.restassured.RestAssured.*;
+import static io.restassured.RestAssured.given;
+import static io.restassured.RestAssured.when;
 import static org.hamcrest.Matchers.*;
 
 public class UserTests {
