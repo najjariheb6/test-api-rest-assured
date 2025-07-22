@@ -9,7 +9,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git 'https://github.com/najjariheb6/test-api-rest-assured.git'
+                git branch: 'main', url: 'https://github.com/najjariheb6/test-api-rest-assured.git'
             }
         }
 
