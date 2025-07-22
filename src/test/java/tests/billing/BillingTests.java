@@ -5,6 +5,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+import tests.setup.TestBase;
 import tests.utils.ConfigLoader;
 
 import java.util.List;
@@ -13,15 +14,8 @@ import java.util.Map;
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.*;
 
-public class BillingTests {
-    private static final String baseUri = ConfigLoader.get("baseUri");
+public class BillingTests extends TestBase {
     private static final Logger log = LoggerFactory.getLogger(BillingTests.class);
-
-    @BeforeMethod(alwaysRun = true)
-    public void setup(){
-        log.info("=== @BeforeMethod executed ===");
-        RestAssured.baseURI = baseUri;
-    }
 
     @Test
     public void getGetBillcycles(){

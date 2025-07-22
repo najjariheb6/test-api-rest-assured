@@ -7,6 +7,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
+import tests.setup.TestBase;
 import tests.utils.ConfigLoader;
 
 import java.util.HashMap;
@@ -15,17 +16,10 @@ import java.util.Map;
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.equalTo;
 
-public class SessionTests {
+public class SessionTests extends TestBase {
 
     private static final Logger log = LoggerFactory.getLogger(SessionTests.class);
     private final Faker faker = new Faker();
-    private static final String baseUri = ConfigLoader.get("baseUri");
-
-    @BeforeClass
-    public void setup(){
-        RestAssured.baseURI = baseUri;
-//        RestAssured.filters(new RequestLoggingFilter(), new ResponseLoggingFilter());
-    }
 
     @Test
     public void signup(){

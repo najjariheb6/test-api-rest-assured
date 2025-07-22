@@ -7,6 +7,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+import tests.setup.TestBase;
 import tests.utils.ConfigLoader;
 
 import java.util.HashMap;
@@ -16,18 +17,11 @@ import static io.restassured.RestAssured.given;
 import static io.restassured.RestAssured.when;
 import static org.hamcrest.Matchers.*;
 
-public class UserTests {
+public class UserTests extends TestBase {
 
     private static final Logger log = LoggerFactory.getLogger(UserTests.class);
     private final Faker faker = new Faker();
     private final String groupName = faker.university().name();
-    private static final String baseUri = ConfigLoader.get("baseUri");
-
-    @BeforeMethod(alwaysRun = true)
-    public void setup(){
-        log.info("=== @BeforeMethod executed ===");
-        RestAssured.baseURI = baseUri;
-    }
 
     @Test
     public void allUserGroups(){
