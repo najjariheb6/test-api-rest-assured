@@ -25,21 +25,24 @@ public class UserTests extends TestBase {
 
     @Test
     public void allUserGroups(){
+        log.info("Starting allUserGroups test");
         given()
                 .post("/users/getAllUserGroups")
                 .then()
                 .statusCode(200)
-                .log().body()
+//                .log().body()
         ;
     }
 
     @Test
     public void whenValidateResponseTime_thenSuccess() {
+        log.info("Starting whenValidateResponseTime_thenSuccess test");
         when().get("/users/getAllUserGroups").then().time(lessThan(700L));
     }
 
     @Test
     public void validAuthenticate(){
+        log.info("Starting validAuthenticate test");
         Map<String, Object> jsonMap = new HashMap<>();
         jsonMap.put("username","dsi");
         given()
@@ -49,11 +52,13 @@ public class UserTests extends TestBase {
                 .post("/users/authenticate")
                 .then()
                 .statusCode(200)
-                .log().body();
+//                .log().body()
+                ;
     }
 
     @Test
     public void invalidAuthenticate(){
+        log.info("Starting invalidAuthenticate test");
         Map<String, Object> jsonMap = new HashMap<>();
         jsonMap.put("username","admin");
         given()
@@ -64,11 +69,13 @@ public class UserTests extends TestBase {
                 .then()
                 .statusCode(401)
                 .body(equalTo("User not found"))
-                .log().body();
+//                .log().body()
+        ;
     }
 
     @Test
     public void emptyAuthenticate(){
+        log.info("Starting emptyAuthenticate test");
         Map<String, Object> jsonMap = new HashMap<>();
         jsonMap.put("username","");
         given()
@@ -77,7 +84,7 @@ public class UserTests extends TestBase {
                 .when()
                 .post("/users/authenticate")
                 .then()
-                .log().body()
+//                .log().body()
                 .statusCode(400)
                 .body(equalTo("Username is required"))
         ;
@@ -85,6 +92,7 @@ public class UserTests extends TestBase {
 
     @Test
     public void nullAuthenticate(){
+        log.info("Starting nullAuthenticate test");
         Map<String, Object> jsonMap = new HashMap<>();
         jsonMap.put("username",null);
         given()
@@ -95,22 +103,26 @@ public class UserTests extends TestBase {
                 .then()
                 .statusCode(400)
                 .body(equalTo("Username is required"))
-                .log().body();
+//                .log().body()
+        ;
     }
 
     @Test
     public void allUsers(){
+        log.info("Starting allUsers test");
         given()
                 .post("/users/allUsers")
                 .then()
                 .statusCode(200)
-                .log().body();
+//                .log().body()
+        ;
     }
 
     @Test
     public void validAddUserGroup(){
+        log.info("Starting validAddUserGroup test");
         Map<String, Object> jsonMap = new HashMap<>();
-        log.info("GroupName: {}",groupName);
+//        log.info("GroupName: {}",groupName);
         jsonMap.put("groupName", groupName);
         jsonMap.put("createdBy", "dsi");
         given()
@@ -120,13 +132,14 @@ public class UserTests extends TestBase {
                 .post("/users/addUserGroup")
                 .then()
                 .statusCode(200)
-                .log().body()
+//                .log().body()
                 .body("isSuccessful", equalTo(true))
                 .body("comment", equalTo("Groupe ajouté avec succès"));
     }
 
     @Test(enabled = false)
     public void emptyAddUserGroup(){
+        log.info("Starting emptyAddUserGroup test");
         Map<String, Object> jsonMap = new HashMap<>();
         jsonMap.put("groupName", "");
         jsonMap.put("createdBy", "dsi");
@@ -137,12 +150,13 @@ public class UserTests extends TestBase {
                 .post("/users/addUserGroup")
                 .then()
                 .statusCode(400)
-                .log().body()
+//                .log().body()
                 .body("isSuccessful", equalTo(false));
     }
 
     @Test(enabled = false)
     public void nullAddUserGroup(){ //THIS api is wrong and he will accept null input
+        log.info("Starting nullAddUserGroup test");
         Map<String, Object> jsonMap = new HashMap<>();
         jsonMap.put("groupName", null);
         jsonMap.put("createdBy", "dsi");
@@ -152,7 +166,7 @@ public class UserTests extends TestBase {
                 .when()
                 .post("/users/addUserGroup")
                 .then()
-                .log().body()
+//                .log().body()
                 .statusCode(400)
                 .body("isSuccessful", equalTo(false))
         ;
@@ -163,8 +177,9 @@ public class UserTests extends TestBase {
             , dependsOnMethods = "validAddUserGroup"
     )
     public void duplicateAddUserGroup(){
+        log.info("Starting duplicateAddUserGroup test");
         Map<String, Object> jsonMap = new HashMap<>();
-        log.info("GroupName: {}",groupName);
+//        log.info("GroupName: {}",groupName);
         jsonMap.put("groupName", groupName);
         jsonMap.put("createdBy", "dsi");
         given()
@@ -173,7 +188,7 @@ public class UserTests extends TestBase {
                 .when()
                 .post("/users/addUserGroup")
                 .then()
-                .log().body()
+//                .log().body()
                 .statusCode(409)
                 .body("isSuccessful", equalTo(false))
 //                .body("errorCode ", equalTo("DuplicateKeyException"))

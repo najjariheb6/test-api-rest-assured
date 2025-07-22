@@ -23,13 +23,14 @@ public class SessionTests extends TestBase {
 
     @Test
     public void signup(){
+        log.info("Starting signup test");
         Map<String, Object> jsonMap = new HashMap<>();
         jsonMap.put("username",faker.name().username());
         jsonMap.put("fullName",faker.name().fullName());
         jsonMap.put("grants","invoice_validation,create_campaign,manage_templates,rejected_bills,manage_users");
         jsonMap.put("role","dsi");
         jsonMap.put("group","1");
-        log.info("jsonMap: {}", jsonMap);
+//        log.info("jsonMap: {}", jsonMap);
         given()
                 .contentType(ContentType.JSON)
                 .body(jsonMap)
@@ -37,7 +38,7 @@ public class SessionTests extends TestBase {
                 .post("/session/signup")
                 .then()
                 .statusCode(200)
-                .log().body()
+//                .log().body()
                 .body("isSuccessful", equalTo(true))
                 .body("comment", equalTo("Utilisateur ajouté avec succès"))
         ;
