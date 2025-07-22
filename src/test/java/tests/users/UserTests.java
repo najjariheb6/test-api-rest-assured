@@ -1,14 +1,11 @@
 package tests.users;
 
 import com.github.javafaker.Faker;
-import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import tests.setup.TestBase;
-import tests.utils.ConfigLoader;
 
 import java.util.HashMap;
 import java.util.Map;
